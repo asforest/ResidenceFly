@@ -1,0 +1,8 @@
+name: ResidenceFly
+main: cn.innc11.residencefly.ResidenceFly
+version: "1.0"
+author: innc11
+api: ["1.0.0"]
+prefix: "ResidenceFly"
+depend: ["Residence"]
+loadbefore: ["Residence"]
