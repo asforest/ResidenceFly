@@ -46,6 +46,7 @@ public class ResidenceFly extends PluginBase implements Listener
 		getServer().getPluginManager().registerEvent(ResidenceEnterEvent.class, this, EventPriority.HIGH, x, this);
 		getServer().getPluginManager().registerEvent(ResidenceLeaveEvent.class, this, EventPriority.HIGH, x, this);
 		getServer().getPluginManager().registerEvent(ResidenceCreationEvent.class, this, EventPriority.HIGH, x, this);
+		getServer().getPluginManager().registerEvent(ResidenceDeleteEvent.class, this, EventPriority.HIGH, x, this);
 	}
 
 	float getDistance(ClaimedResidence res, Location loc)
@@ -171,6 +172,19 @@ public class ResidenceFly extends PluginBase implements Listener
 					}
 				}
 				
+			}
+			
+			if(e instanceof ResidenceDeleteEvent && listener instanceof ResidenceFly)
+			{
+				for(Player player : ((ResidenceDeleteEvent) e).getResidence().getPlayersInResidence())
+				{
+					if(!((ResidenceFly) listener).tempWhiteList.contains(player.getName()))
+					{
+						player.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, false);
+						player.getAdventureSettings().set(AdventureSettings.Type.FLYING, false);
+						player.getAdventureSettings().update();
+					}
+				}
 			}
 			
 			if(e instanceof ResidenceLeaveEvent && listener instanceof ResidenceFly)
