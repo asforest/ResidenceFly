@@ -1,6 +1,6 @@
 name: ResidenceFly
 main: cn.innc11.residencefly.ResidenceFly
-version: "1.0"
+version: "1.0.1"
 author: innc11
 api: ["1.0.0"]
 prefix: "ResidenceFly"
